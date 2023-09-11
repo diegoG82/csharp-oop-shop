@@ -2,8 +2,8 @@
 {
     public class Prodotto
     {
-        //PROPRIETA'
-        public int Codice { get; private set; } = new Random().Next(00000001, 99999999);
+        //PROPRIETA' e STATI
+        public int Codice { get; private set; }
         public string Nome { get; set; }
         public string Descrizione { get; set; }
         public double Prezzo { get; set; }
@@ -13,24 +13,31 @@
 
         public Prodotto(string nome, string descrizione, double prezzo, int iva)
         {
-          
+
+            this.Codice = new Random().Next(1, 99999999);
             this.Nome = nome;
             this.Descrizione = descrizione;
             this.Prezzo = prezzo;
             this.Iva = iva;
         }
 
-        //GETTER
-    
-        public double PrezzoBase
+        //GETTERS
+
+        public double GetPrezzoBase()
         {
-            get { return Prezzo; }
+            return this.Prezzo;
         }
 
-        public double PrezzoIvato
+        public double GetPrezzoIvato()
 
         {
-            get { return Prezzo + (Prezzo / 100 * Iva); }
+            return Prezzo + (Prezzo / 100 * Iva);
+        }
+
+        public string GetNomeEsteso()
+
+        {
+            return this.Codice + " " + this.Nome;
         }
 
     }
